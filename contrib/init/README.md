@@ -1,11 +1,11 @@
 Sample configuration files for:
 
-SystemD: polisd.service
-Upstart: polisd.conf
-OpenRC:  polisd.openrc
-         polisd.openrcconf
-CentOS:  polisd.init
-OS X:    org.polis.polisd.plist
+SystemD: gulld.service
+Upstart: gulld.conf
+OpenRC:  gulld.openrc
+         gulld.openrcconf
+CentOS:  gulld.init
+OS X:    org.gull.gulld.plist
 
 have been made available to assist packagers in creating node packages here.
 

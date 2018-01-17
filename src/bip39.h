@@ -21,8 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef polis_BIP39_H
-#define polis_BIP39_H
+#ifndef gull_BIP39_H
+#define gull_BIP39_H
 
 #include "support/allocators/secure.h"
 

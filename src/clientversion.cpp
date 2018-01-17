@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both polisd and polis-qt, to make it harder for attackers to
+ * for both gulld and gull-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("polis Core");
+const std::string CLIENT_NAME("gull Core");
 
 /**
  * Client version number

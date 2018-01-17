@@ -1,0 +1,6 @@
+usr/local/bin/gull-qt usr/bin
+share/pixmaps/gull32.xpm usr/share/pixmaps
+share/pixmaps/gull16.xpm usr/share/pixmaps
+share/pixmaps/gull128.png usr/share/pixmaps
+debian/gull-qt.desktop usr/share/applications
+debian/gull-qt.protocol usr/share/kde4/services/

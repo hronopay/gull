@@ -1,10 +1,10 @@
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 
 #include "governance-validators.h"
 #include "univalue.h"
 #include "utilstrencodings.h"
 
-#include "test/test_polis.h"
+#include "test/test_gull.h"
 
 #include <boost/test/unit_test.hpp>
 

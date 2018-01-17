@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=gull
+Comment=gull P2P Cryptocurrency
+Comment[fr]=gull, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=gull, eşten eşe kriptografik sanal para birimi
+Exec=gull-qt %u
+Terminal=false
+Type=Application
+Icon=gull128
+MimeType=x-scheme-handler/gull;
+Categories=Office;Finance;

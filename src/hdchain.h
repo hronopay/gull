@@ -1,7 +1,7 @@
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
-#ifndef polis_HDCHAIN_H
-#define polis_HDCHAIN_H
+#ifndef gull_HDCHAIN_H
+#define gull_HDCHAIN_H
 
 #include "key.h"
 #include "sync.h"
@@ -149,4 +149,4 @@ public:
     std::string GetKeyPath() const;
 };
 
-#endif // polis_HDCHAIN_H
+#endif // gull_HDCHAIN_H

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -51,7 +51,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Polis, from people to people";
+    const char* pszTimestamp = "Gull, from people to people";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -92,8 +92,8 @@ public:
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("0x000007d91d1254d60e2dd1ae580383070a4ddffa4c64c2eeb4a2f9ecc0414343");
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
-        consensus.nPowTargetTimespan = 60; // polis: 1 day
-        consensus.nPowTargetSpacing = 120 ; // polis: 2.5 minutes
+        consensus.nPowTargetTimespan = 60; // gull: 1 day
+        consensus.nPowTargetSpacing = 120 ; // gull: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         //consensus.nPowKGWHeight = 15200;
@@ -140,23 +140,23 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x000009701eb781a8113b1af1d814e2f060f6408a2c990db291bc5108a1345c1e"));
         assert(genesis.hashMerkleRoot == uint256S("0x5dc9bcf5d1e4802dad0045a88849e3ad97d07a5b8aaee1114ed5ae03b98c4bfc"));
 
-        vSeeds.push_back(CDNSSeedData("polispay.org", "polispay.org"));
-        vSeeds.push_back(CDNSSeedData("n1.polispay.org", "n1.polispay.org"));
-        vSeeds.push_back(CDNSSeedData("n2.polispay.org", "n2.polispay.org"));
-        vSeeds.push_back(CDNSSeedData("n3.polispay.org", "n3.polispay.org"));
+        vSeeds.push_back(CDNSSeedData("gullpay.org", "gullpay.org"));
+        vSeeds.push_back(CDNSSeedData("n1.gullpay.org", "n1.gullpay.org"));
+        vSeeds.push_back(CDNSSeedData("n2.gullpay.org", "n2.gullpay.org"));
+        vSeeds.push_back(CDNSSeedData("n3.gullpay.org", "n3.gullpay.org"));
 
-        // polis addresses start with 'P'
+        // gull addresses start with 'P'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
-        // polis script addresses start with '3'
+        // gull script addresses start with '3'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        // polis private keys start with '3' or 'p'
+        // gull private keys start with '3' or 'p'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,60);
-        // polis BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // gull BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
-        // polis BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // gull BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-        // polis BIP44 coin type is '5'
+        // gull BIP44 coin type is '5'
         nExtCoinType = 5;
      
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -225,8 +225,8 @@ public:
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("0x0000047d24635e347be3aaaeb66c26be94901a2f962feccd4f95090191f208c1");
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // polis: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // polis: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // gull: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // gull: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 4001; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
@@ -276,18 +276,18 @@ public:
         vSeeds.clear();
 
 
-        // Testnet polis addresses start with 'y'
+        // Testnet gull addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet polis script addresses start with '8' or '9'
+        // Testnet gull script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet polis BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet gull BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
-        // Testnet polis BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet gull BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
-        // Testnet polis BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet gull BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -345,8 +345,8 @@ public:
         consensus.BIP34Height = -1; // BIP34 has not necessarily activated on regtest
         consensus.BIP34Hash = uint256();
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // polis: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // polis: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // gull: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // gull: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nPowKGWHeight = 15200; // same as mainnet
@@ -402,18 +402,18 @@ public:
             0,
             0
         };
-        // Regtest polis addresses start with 'y'
+        // Regtest gull addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Regtest polis script addresses start with '8' or '9'
+        // Regtest gull script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Regtest polis BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest gull BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
-        // Regtest polis BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest gull BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
-        // Regtest polis BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest gull BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
    }
 };

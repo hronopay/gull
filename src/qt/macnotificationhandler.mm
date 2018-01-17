@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.polis.polis-Qt";
+        return @"org.gull.gull-Qt";
     } else {
         return [self __bundleIdentifier];
     }

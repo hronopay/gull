@@ -1,7 +1,7 @@
 Translation Strings Policy
 ===========================
 
-This document provides guidelines for internationalization of the polis Core software.
+This document provides guidelines for internationalization of the gull Core software.
 
 How to translate?
 ------------------
@@ -68,7 +68,7 @@ This may sometimes be at conflict with the recommendation in the previous sectio
 
 Plurals can be complex in some languages. A quote from the gettext documentation:
 
-    In Polish we use e.g. plik (file) this way:
+    In Gullh we use e.g. plik (file) this way:
     1 plik,
     2,3,4 pliki,
     5-21 pliko'w,
@@ -85,10 +85,10 @@ In Qt code use tr's third argument for optional plurality. For example:
 This adds `<numerusform>`s to the respective `.ts` file, which can be translated separately depending on the language. In English, this is simply:
 
     <message numerus="yes">
-        <source>%n active connection(s) to polis network</source>
+        <source>%n active connection(s) to gull network</source>
         <translation>
-            <numerusform>%n active connection to polis network</numerusform>
-            <numerusform>%n active connections to polis network</numerusform>
+            <numerusform>%n active connection to gull network</numerusform>
+            <numerusform>%n active connections to gull network</numerusform>
         </translation>
     </message>
 

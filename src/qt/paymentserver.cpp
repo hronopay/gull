@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,14 +48,14 @@
 #endif
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("polis:");
+const QString BITCOIN_IPC_PREFIX("gull:");
 // BIP70 payment protocol messages
 const char* BIP70_MESSAGE_PAYMENTACK = "PaymentACK";
 const char* BIP70_MESSAGE_PAYMENTREQUEST = "PaymentRequest";
 // BIP71 payment protocol media types
-const char* BIP71_MIMETYPE_PAYMENT = "application/polis-payment";
-const char* BIP71_MIMETYPE_PAYMENTACK = "application/polis-paymentack";
-const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/polis-paymentrequest";
+const char* BIP71_MIMETYPE_PAYMENT = "application/gull-payment";
+const char* BIP71_MIMETYPE_PAYMENTACK = "application/gull-paymentack";
+const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/gull-paymentrequest";
 // BIP70 max payment request size in bytes (DoS protection)
 const qint64 BIP70_MAX_PAYMENTREQUEST_SIZE = 50000;
 
@@ -81,7 +81,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("polisQt");
+    QString name("gullQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -210,11 +210,11 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
         if (arg.startsWith("-"))
             continue;
 
-        // If the polis: URI contains a payment request, we are not able to detect the
+        // If the gull: URI contains a payment request, we are not able to detect the
         // network as that would require fetching and parsing the payment request.
         // That means clicking such an URI which contains a testnet payment request
         // will start a mainnet instance and throw a "wrong network" error.
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // polis: URI
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // gull: URI
         {
             savedPaymentRequests.append(arg);
 
@@ -310,7 +310,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     // Install global event filter to catch QFileOpenEvents
-    // on Mac: sent when you click polis: links
+    // on Mac: sent when you click gull: links
     // other OSes: helpful when dealing with payment request files
     if (parent)
         parent->installEventFilter(this);
@@ -327,7 +327,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start polis: click-to-pay handler"));
+                tr("Cannot start gull: click-to-pay handler"));
         }
         else {
             connect(uriServer, SIGNAL(newConnection()), this, SLOT(handleURIConnection()));
@@ -342,7 +342,7 @@ PaymentServer::~PaymentServer()
 }
 
 //
-// OSX-specific way of handling polis: URIs and PaymentRequest mime types.
+// OSX-specific way of handling gull: URIs and PaymentRequest mime types.
 // Also used by paymentservertests.cpp and when opening a payment request file
 // via "Open URI..." menu entry.
 //
@@ -368,7 +368,7 @@ void PaymentServer::initNetManager()
     if (netManager != NULL)
         delete netManager;
 
-    // netManager is used to fetch paymentrequests given in polis: URIs
+    // netManager is used to fetch paymentrequests given in gull: URIs
     netManager = new QNetworkAccessManager(this);
 
     QNetworkProxy proxy;
@@ -408,7 +408,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // polis: URI
+    if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // gull: URI
     {
 #if QT_VERSION < 0x050000
         QUrl uri(s);
@@ -452,7 +452,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
             }
             else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid polis address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid gull address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -564,7 +564,7 @@ bool PaymentServer::processPaymentRequest(const PaymentRequestPlus& request, Sen
             addresses.append(QString::fromStdString(CBitcoinAddress(dest).ToString()));
         }
         else if (!recipient.authenticatedMerchant.isEmpty()) {
-            // Unauthenticated payment requests to custom polis addresses are not supported
+            // Unauthenticated payment requests to custom gull addresses are not supported
             // (there is no good way to tell the user where they are paying in a way they'd
             // have a chance of understanding).
             Q_EMIT message(tr("Payment request rejected"),
@@ -573,7 +573,7 @@ bool PaymentServer::processPaymentRequest(const PaymentRequestPlus& request, Sen
             return false;
         }
 
-        // polis amounts are stored as (optional) uint64 in the protobuf messages (see paymentrequest.proto),
+        // gull amounts are stored as (optional) uint64 in the protobuf messages (see paymentrequest.proto),
         // but CAmount is defined as int64_t. Because of that we need to verify that amounts are in a valid range
         // and no overflow has happened.
         if (!verifyAmount(sendingTo.second)) {

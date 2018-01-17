@@ -13,7 +13,7 @@
 #include "serialize.h"
 #include "util.h"
 
-#include "test/test_polis.h"
+#include "test/test_gull.h"
 
 #include <stdint.h>
 

@@ -4,22 +4,22 @@
 
 	* means the category has an associated class
 	
-	CpolisNetwork: polis NETWORK (ROOT)
+	CgullNetwork: gull NETWORK (ROOT)
 	has:
 		vector<CNetworkVariable> vecNetworkVariables;
-		vector<CpolisProject> vecProjects;
+		vector<CgullProject> vecProjects;
 		vector<CGovernanceObject> vecProposals;
 		vector<CBudgetContract> vecContracts;
 		vector<CBudgetUsers> vecUsers;
 
-	CpolisProject:
+	CgullProject:
 	has:
 		name
 		employees
 
 */
 
-	// polis NETWORK (ROOT)
+	// gull NETWORK (ROOT)
 	// 	-> NETWORK VARIABLE
 	// 		-> switch, setting
 	// 	-> CATEGORIES
@@ -49,7 +49,7 @@
 	// 			-> USER1 (only users are allowed here in this scope)
 	// 			-> USER2
 	// 		-> GROUP2 (EVO)
-	// 			-> VALUEOVERRIDE (STORE=polisDRIVE)
+	// 			-> VALUEOVERRIDE (STORE=gullDRIVE)
 	// 			-> USER1
 
 	// 	-> COMPANIES

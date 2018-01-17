@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C .. polis_test
+	$(MAKE) -C .. gull_test
 clean:
-	$(MAKE) -C .. polis_test_clean
+	$(MAKE) -C .. gull_test_clean
 check:
-	$(MAKE) -C .. polis_test_check
+	$(MAKE) -C .. gull_test_check

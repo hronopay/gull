@@ -123,7 +123,7 @@ public:
 };
 
 /**
- * polis RPC command dispatcher.
+ * gull RPC command dispatcher.
  */
 class CRPCTable
 {

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,9 +19,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(polis);
-    unitlist.append(mpolis);
-    unitlist.append(upolis);
+    unitlist.append(gull);
+    unitlist.append(mgull);
+    unitlist.append(ugull);
     unitlist.append(duffs);
     return unitlist;
 }
@@ -30,9 +30,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case polis:
-    case mpolis:
-    case upolis:
+    case gull:
+    case mgull:
+    case ugull:
     case duffs:
         return true;
     default:
@@ -46,9 +46,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case polis: return QString("polis");
-            case mpolis: return QString("mpolis");
-            case upolis: return QString::fromUtf8("μpolis");
+            case gull: return QString("gull");
+            case mgull: return QString("mgull");
+            case ugull: return QString::fromUtf8("μgull");
             case duffs: return QString("duffs");
             default: return QString("???");
         }
@@ -57,9 +57,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case polis: return QString("tpolis");
-            case mpolis: return QString("mtpolis");
-            case upolis: return QString::fromUtf8("μtpolis");
+            case gull: return QString("tgull");
+            case mgull: return QString("mtgull");
+            case ugull: return QString::fromUtf8("μtgull");
             case duffs: return QString("tduffs");
             default: return QString("???");
         }
@@ -72,10 +72,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case polis: return QString("polis");
-            case mpolis: return QString("Milli-polis (1 / 1" THIN_SP_UTF8 "000)");
-            case upolis: return QString("Micro-polis (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-polis (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case gull: return QString("gull");
+            case mgull: return QString("Milli-gull (1 / 1" THIN_SP_UTF8 "000)");
+            case ugull: return QString("Micro-gull (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-gull (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -83,10 +83,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case polis: return QString("Testpoliss");
-            case mpolis: return QString("Milli-Testpolis (1 / 1" THIN_SP_UTF8 "000)");
-            case upolis: return QString("Micro-Testpolis (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-Testpolis (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case gull: return QString("Testgulls");
+            case mgull: return QString("Milli-Testgull (1 / 1" THIN_SP_UTF8 "000)");
+            case ugull: return QString("Micro-Testgull (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-Testgull (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -96,9 +96,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case polis:  return 100000000;
-    case mpolis: return 100000;
-    case upolis: return 100;
+    case gull:  return 100000000;
+    case mgull: return 100000;
+    case ugull: return 100;
     case duffs: return 1;
     default:   return 100000000;
     }
@@ -108,9 +108,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case polis: return 8;
-    case mpolis: return 5;
-    case upolis: return 2;
+    case gull: return 8;
+    case mgull: return 5;
+    case ugull: return 2;
     case duffs: return 0;
     default: return 0;
     }

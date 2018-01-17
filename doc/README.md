@@ -1,39 +1,39 @@
 
 
-polis Core 1.1.0
+gull Core 1.1.0
 =====================
 
-This is the official reference wallet for polis digital currency and comprises the backbone of the polis peer-to-peer network. You can [download polis Core](https://www.polis.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for gull digital currency and comprises the backbone of the gull peer-to-peer network. You can [download gull Core](https://www.gull.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run polis on your native platform.
+The following are some helpful notes on how to run gull on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/polis-qt` (GUI) or
-- `bin/polisd` (headless)
+- `bin/gull-qt` (GUI) or
+- `bin/gulld` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run polis-qt.exe.
+Unpack the files into a directory, and then run gull-qt.exe.
 
 ### OS X
 
-Drag polis-Qt to your applications folder, and then run polis-Qt.
+Drag gull-Qt to your applications folder, and then run gull-Qt.
 
 ### Need Help?
 
-* See the [polis documentation](https://polispay.atlassian.net/wiki/display/DOC)
+* See the [gull documentation](https://gullpay.atlassian.net/wiki/display/DOC)
 for help and more information.
-* Ask for help on [#polispay](http://webchat.freenode.net?channels=polispay) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=polispay).
-* Ask for help on the [polisTalk](https://polistalk.org/) forums.
+* Ask for help on [#gullpay](http://webchat.freenode.net?channels=gullpay) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=gullpay).
+* Ask for help on the [gullTalk](https://gulltalk.org/) forums.
 
 Building
 ---------------------
-The following are developer notes on how to build polis Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build gull Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -43,7 +43,7 @@ The following are developer notes on how to build polis Core on your native plat
 
 Development
 ---------------------
-The polis Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The gull Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -59,8 +59,8 @@ The polis Core repo's [root README](/README.md) contains relevant information on
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [polisTalk](https://polistalk.org/) forums, in the Development & Technical Discussion board.
-* Discuss on [#polispay](http://webchat.freenode.net/?channels=polispay) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=polispay).
+* Discuss on the [gullTalk](https://gulltalk.org/) forums, in the Development & Technical Discussion board.
+* Discuss on [#gullpay](http://webchat.freenode.net/?channels=gullpay) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=gullpay).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

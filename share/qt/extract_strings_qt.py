@@ -9,7 +9,7 @@ import operator
 import os
 import sys
 
-OUT_CPP="qt/polisstrings.cpp"
+OUT_CPP="qt/gullstrings.cpp"
 EMPTY=['""']
 
 def parse_po(text):
@@ -69,10 +69,10 @@ f.write("""
 #define UNUSED
 #endif
 """)
-f.write('static const char UNUSED *polis_strings[] = {\n')
+f.write('static const char UNUSED *gull_strings[] = {\n')
 messages.sort(key=operator.itemgetter(0))
 for (msgid, msgstr) in messages:
     if msgid != EMPTY:
-        f.write('QT_TRANSLATE_NOOP("polis-core", %s),\n' % ('\n'.join(msgid)))
+        f.write('QT_TRANSLATE_NOOP("gull-core", %s),\n' % ('\n'.join(msgid)))
 f.write('};\n')
 f.close()

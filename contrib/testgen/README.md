@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven polis tests.
+Utilities to generate test vectors for the data-driven gull tests.
 
 Usage: 
 

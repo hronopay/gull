@@ -49,8 +49,8 @@ EXTRA_LIBRARIES += libbitcoin_zmq.a
 endif
 
 if BUILD_BITCOIN_LIBS
-lib_LTLIBRARIES = libpolisconsensus.la
-LIBBITCOIN_CONSENSUS=libpolisconsensus.la
+lib_LTLIBRARIES = libgullconsensus.la
+LIBBITCOIN_CONSENSUS=libgullconsensus.la
 else
 LIBBITCOIN_CONSENSUS=
 endif
@@ -60,15 +60,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += polisd
+  bin_PROGRAMS += gulld
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += polis-cli polis-tx
+  bin_PROGRAMS += gull-cli gull-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# polis core #
+# gull core #
 BITCOIN_CORE_H = \
   addrdb.h \
   activemasternode.h \
@@ -207,7 +207,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between polisd and polis-qt
+# server: shared between gulld and gull-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -280,7 +280,7 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between polisd and polis-qt, but only linked
+# wallet: shared between gulld and gull-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -343,7 +343,7 @@ crypto_libbitcoin_crypto_a_SOURCES += \
   crypto/sph_skein.h \
   crypto/sph_types.h
 
-# common: shared between polisd, and polis-qt and non-server tools
+# common: shared between gulld, and gull-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -403,7 +403,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between polis-cli and polis-qt
+# cli: shared between gull-cli and gull-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -414,16 +414,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-polisd_SOURCES = polisd.cpp
-polisd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-polisd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-polisd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+gulld_SOURCES = gulld.cpp
+gulld_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+gulld_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+gulld_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-polisd_SOURCES += polisd-res.rc
+gulld_SOURCES += gulld-res.rc
 endif
 
-polisd_LDADD = \
+gulld_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -434,56 +434,56 @@ polisd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-polisd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+gulld_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-polisd_LDADD += libbitcoin_wallet.a
+gulld_LDADD += libbitcoin_wallet.a
 endif
 
-polisd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+gulld_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
-# polis-cli binary #
-polis_cli_SOURCES = polis-cli.cpp
-polis_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-polis_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-polis_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# gull-cli binary #
+gull_cli_SOURCES = gull-cli.cpp
+gull_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+gull_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+gull_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-polis_cli_SOURCES += polis-cli-res.rc
+gull_cli_SOURCES += gull-cli-res.rc
 endif
 
-polis_cli_LDADD = \
+gull_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL)
-polis_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+gull_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# polis-tx binary #
-polis_tx_SOURCES = polis-tx.cpp
-polis_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-polis_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-polis_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# gull-tx binary #
+gull_tx_SOURCES = gull-tx.cpp
+gull_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+gull_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+gull_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-polis_tx_SOURCES += polis-tx-res.rc
+gull_tx_SOURCES += gull-tx-res.rc
 endif
 
-polis_tx_LDADD = \
+gull_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-polis_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+gull_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# polisconsensus library #
+# gullconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/polisconsensus.h
-libpolisconsensus_la_SOURCES = \
+include_HEADERS = script/gullconsensus.h
+libgullconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -492,20 +492,20 @@ libpolisconsensus_la_SOURCES = \
   hash.cpp \
   primitives/transaction.cpp \
   pubkey.cpp \
-  script/polisconsensus.cpp \
+  script/gullconsensus.cpp \
   script/interpreter.cpp \
   script/script.cpp \
   uint256.cpp \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libpolisconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libgullconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libpolisconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libpolisconsensus_la_LIBADD = $(LIBSECP256K1)
-libpolisconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libpolisconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libgullconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libgullconsensus_la_LIBADD = $(LIBSECP256K1)
+libgullconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libgullconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #

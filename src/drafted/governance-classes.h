@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 
 /*
  * FIELDS AND CLASSIFICATION
@@ -45,7 +45,7 @@
  * =========================
  *
  *   // network
- *   CpolisNetwork lvl, network-type, network-status, network-error, milestone-status*
+ *   CgullNetwork lvl, network-type, network-status, network-error, milestone-status*
  *   CCategory lvl, category-type, status, status-error
  *   CNetworkGlobalVariable lvl, global-type, status, status-error
  *   // base: actor
@@ -79,7 +79,7 @@
  *  TREE STRUCTURE
  *  ===========================================
  * 
- *  polis NETWORK (ROOT)
+ *  gull NETWORK (ROOT)
  *      -> NETWORK GLOBOLS
  *          -> SWITCHES, SETTINGS
  *      -> CATEGORIES
@@ -117,7 +117,7 @@ private:
     int nLevel;
     std::string strCategory;
 
-    // Current OBJECT STATUS (see http://govman.polis.org/index.php/Documentation_:_Status_Field)
+    // Current OBJECT STATUS (see http://govman.gull.org/index.php/Documentation_:_Status_Field)
     int nStatusID;
     std::string strStatusMessage;
 
@@ -130,7 +130,7 @@ public:
 };
 
 // // root node
-class CpolisNetwork : public CGovernanceObject
+class CgullNetwork : public CGovernanceObject
 {
 private:
     std::string strName;
@@ -138,7 +138,7 @@ private:
 
 
 public:
-    CpolisNetwork(UniValue objIn)
+    CgullNetwork(UniValue objIn)
     {
         strName = objIn["name"].get_str();
         strURL = objIn["name"].get_str();
@@ -174,9 +174,9 @@ public:
 
 };
 
-// // can be under: polisNetwork
+// // can be under: gullNetwork
 // //   -- signature requirements : Key1(User)
-// class CpolisNetworkVariable : public CGovernanceObject
+// class CgullNetworkVariable : public CGovernanceObject
 // {
 // private:
 
@@ -279,7 +279,7 @@ public:
 //     // isRootCategory()
 //     // {
 //     //     // root categories won't have categories as parents
-//     //     return (IsType() == polisNetwork);
+//     //     return (IsType() == gullNetwork);
 //     // }
 
 //     // isSubcategoryOf(std::string strParentName)

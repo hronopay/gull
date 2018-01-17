@@ -1,8 +1,8 @@
-Source: polis
+Source: gull
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@polis.org>
-Uploaders: Holger Schinzel <holger@polis.org>
+Maintainer: Holger Schinzel <holger@gull.org>
+Uploaders: Holger Schinzel <holger@gull.org>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -24,45 +24,45 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler,
  python
 Standards-Version: 3.9.2
-Homepage: https://www.polis.org/
-Vcs-Git: git://github.com/polispay/polis.git
-Vcs-Browser: https://github.com/polispay/polis
+Homepage: https://www.gull.org/
+Vcs-Git: git://github.com/gullpay/gull.git
+Vcs-Browser: https://github.com/gullpay/gull
 
-Package: polisd
+Package: gulld
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- polis is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. polis uses peer-to-peer
+ gull is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. gull uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. polis Core
+ and issuing money are carried out collectively by the network. gull Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, polisd, and the CLI tool
- polis-cli to interact with the daemon.
+ This package provides the daemon, gulld, and the CLI tool
+ gull-cli to interact with the daemon.
 
-Package: polis-qt
+Package: gull-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- polis is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. polis uses peer-to-peer
+ gull is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. gull uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. polis Core
+ and issuing money are carried out collectively by the network. gull Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides polis-Qt, a GUI for polis based on Qt.
+ This package provides gull-Qt, a GUI for gull based on Qt.
 
-Package: polis-tx
+Package: gull-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- polis is an experimental new digital currency that enables anonymous, instant
- payments to anyone, anywhere in the world. polis uses peer-to-peer
+ gull is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. gull uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. polis Core
+ and issuing money are carried out collectively by the network. gull Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides polis-tx, a command-line transaction creation
- tool which can be used without a polis daemon.  Some means of
+ This package provides gull-tx, a command-line transaction creation
+ tool which can be used without a gull daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

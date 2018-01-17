@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between polis-cli and polisd)
- * of a given instance of the polis system.
+ * CBaseChainParams defines the base parameters (shared between gull-cli and gulld)
+ * of a given instance of the gull system.
  */
 class CBaseChainParams
 {

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -243,11 +243,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop polis Core server.");
+            "\nStop gull Core server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "polis Core server stopping";
+    return "gull Core server stopping";
 }
 
 /**
@@ -343,20 +343,20 @@ static const CRPCCommand vRPCCommands[] =
     { "hidden",             "resendwallettransactions", &resendwallettransactions, true},
 #endif
 
-    /* polis features */
-    { "polis",               "masternode",             &masternode,             true  },
-    { "polis",               "masternodelist",         &masternodelist,         true  },
-    { "polis",               "masternodebroadcast",    &masternodebroadcast,    true  },
-    { "polis",               "gobject",                &gobject,                true  },
-    { "polis",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
-    { "polis",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
-    { "polis",               "voteraw",                &voteraw,                true  },
-    { "polis",               "mnsync",                 &mnsync,                 true  },
-    { "polis",               "spork",                  &spork,                  true  },
-    { "polis",               "getpoolinfo",            &getpoolinfo,            true  },
-    { "polis",               "sentinelping",           &sentinelping,           true  },
+    /* gull features */
+    { "gull",               "masternode",             &masternode,             true  },
+    { "gull",               "masternodelist",         &masternodelist,         true  },
+    { "gull",               "masternodebroadcast",    &masternodebroadcast,    true  },
+    { "gull",               "gobject",                &gobject,                true  },
+    { "gull",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
+    { "gull",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
+    { "gull",               "voteraw",                &voteraw,                true  },
+    { "gull",               "mnsync",                 &mnsync,                 true  },
+    { "gull",               "spork",                  &spork,                  true  },
+    { "gull",               "getpoolinfo",            &getpoolinfo,            true  },
+    { "gull",               "sentinelping",           &sentinelping,           true  },
 #ifdef ENABLE_WALLET
-    { "polis",               "privatesend",            &privatesend,            false },
+    { "gull",               "privatesend",            &privatesend,            false },
 
     /* Wallet */
     { "wallet",             "keepass",                &keepass,                true },
@@ -580,7 +580,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> polis-cli " + methodname + " " + args + "\n";
+    return "> gull-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)

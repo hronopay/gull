@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/polis-config.h"
+#include "config/gull-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -92,11 +92,11 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     }
     
     /* Theme selector */
-    ui->theme->addItem(QString("polis-light"), QVariant("light"));
-    ui->theme->addItem(QString("polis-light-hires"), QVariant("light-hires"));
-    ui->theme->addItem(QString("polis-blue"), QVariant("drkblue"));
-    ui->theme->addItem(QString("polis-Crownium"), QVariant("crownium"));
-    ui->theme->addItem(QString("polis-traditional"), QVariant("trad"));
+    ui->theme->addItem(QString("gull-light"), QVariant("light"));
+    ui->theme->addItem(QString("gull-light-hires"), QVariant("light-hires"));
+    ui->theme->addItem(QString("gull-blue"), QVariant("drkblue"));
+    ui->theme->addItem(QString("gull-Crownium"), QVariant("crownium"));
+    ui->theme->addItem(QString("gull-traditional"), QVariant("trad"));
     
     /* Language selector */
     QDir translations(":translations");

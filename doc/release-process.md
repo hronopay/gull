@@ -1,7 +1,7 @@
 Release Process
 ====================
 
-* Update translations, see [translation_process.md](https://github.com/polispay/polis/blob/master/doc/translation_process.md#syncing-with-transifex)
+* Update translations, see [translation_process.md](https://github.com/gullpay/gull/blob/master/doc/translation_process.md#syncing-with-transifex)
 * Update hardcoded [seeds](/contrib/seeds)
 
 * * *
@@ -10,14 +10,14 @@ Release Process
 Check out the source code in the following directory hierarchy.
 
 	cd /path/to/your/toplevel/build
-	git clone https://github.com/polispay/gitian.sigs.git
-	git clone https://github.com/polispay/polis-detached-sigs.git
+	git clone https://github.com/gullpay/gitian.sigs.git
+	git clone https://github.com/gullpay/gull-detached-sigs.git
 	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/polispay/polis.git
+	git clone https://github.com/gullpay/gull.git
 
-### polis Core maintainers/release engineers, update (commit) version in sources
+### gull Core maintainers/release engineers, update (commit) version in sources
 
-	pushd ./polis
+	pushd ./gull
 	contrib/verifysfbinaries/verify.sh
 	configure.ac
 	doc/README*
@@ -40,7 +40,7 @@ Check out the source code in the following directory hierarchy.
 
  Setup Gitian descriptors:
 
-	pushd ./polis
+	pushd ./gull
 	export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
 	export VERSION=(new version, e.g. 0.8.0)
 	git fetch
@@ -76,51 +76,51 @@ Check out the source code in the following directory hierarchy.
 
 By default, Gitian will fetch source files as needed. To cache them ahead of time:
 
-	make -C ../polis/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../gull/depends download SOURCES_PATH=`pwd`/cache/common
 
 Only missing files will be fetched, so this is safe to re-run for each build.
 
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 ```
-./bin/gbuild --url polis=/path/to/polis,signature=/path/to/sigs {rest of arguments}
+./bin/gbuild --url gull=/path/to/gull,signature=/path/to/sigs {rest of arguments}
 ```
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign polis Core for Linux, Windows, and OS X:
+### Build and sign gull Core for Linux, Windows, and OS X:
 
-	./bin/gbuild --num-make 24 --memory 64000 --commit polis=v${VERSION} ../polis/contrib/gitian-descriptors/gitian-linux.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../polis/contrib/gitian-descriptors/gitian-linux.yml
-	mv build/out/poliscore-*.tar.gz build/out/src/poliscore-*.tar.gz ../
+	./bin/gbuild --num-make 24 --memory 64000 --commit gull=v${VERSION} ../gull/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../gull/contrib/gitian-descriptors/gitian-linux.yml
+	mv build/out/gullcore-*.tar.gz build/out/src/gullcore-*.tar.gz ../
 
-	./bin/gbuild --num-make 24 --memory 64000 --commit polis=v${VERSION} ../polis/contrib/gitian-descriptors/gitian-win.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../polis/contrib/gitian-descriptors/gitian-win.yml
-	mv build/out/poliscore-*-win-unsigned.tar.gz inputs/poliscore-win-unsigned.tar.gz
-	mv build/out/poliscore-*.zip build/out/poliscore-*.exe ../
+	./bin/gbuild --num-make 24 --memory 64000 --commit gull=v${VERSION} ../gull/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../gull/contrib/gitian-descriptors/gitian-win.yml
+	mv build/out/gullcore-*-win-unsigned.tar.gz inputs/gullcore-win-unsigned.tar.gz
+	mv build/out/gullcore-*.zip build/out/gullcore-*.exe ../
 
-	./bin/gbuild --num-make 24 --memory 64000 --commit polis=v${VERSION} ../polis/contrib/gitian-descriptors/gitian-osx.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../polis/contrib/gitian-descriptors/gitian-osx.yml
-	mv build/out/polis-*-osx-unsigned.tar.gz inputs/polis-osx-unsigned.tar.gz
-	mv build/out/polis-*.tar.gz build/out/polis-*.dmg ../
+	./bin/gbuild --num-make 24 --memory 64000 --commit gull=v${VERSION} ../gull/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../gull/contrib/gitian-descriptors/gitian-osx.yml
+	mv build/out/gull-*-osx-unsigned.tar.gz inputs/gull-osx-unsigned.tar.gz
+	mv build/out/gull-*.tar.gz build/out/gull-*.dmg ../
 
   Build output expected:
 
-  1. source tarball (polis-${VERSION}.tar.gz)
-  2. linux 32-bit and 64-bit dist tarballs (polis-${VERSION}-linux[32|64].tar.gz)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (polis-${VERSION}-win[32|64]-setup-unsigned.exe, polis-${VERSION}-win[32|64].zip)
-  4. OS X unsigned installer and dist tarball (polis-${VERSION}-osx-unsigned.dmg, polis-${VERSION}-osx64.tar.gz)
+  1. source tarball (gull-${VERSION}.tar.gz)
+  2. linux 32-bit and 64-bit dist tarballs (gull-${VERSION}-linux[32|64].tar.gz)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (gull-${VERSION}-win[32|64]-setup-unsigned.exe, gull-${VERSION}-win[32|64].zip)
+  4. OS X unsigned installer and dist tarball (gull-${VERSION}-osx-unsigned.dmg, gull-${VERSION}-osx64.tar.gz)
   5. Gitian signatures (in gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
   Add other gitian builders keys to your gpg keyring
 
-	gpg --import ../polis/contrib/gitian-downloader/*.pgp
+	gpg --import ../gull/contrib/gitian-downloader/*.pgp
 
   Verify the signatures
 
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../polis/contrib/gitian-descriptors/gitian-linux.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../polis/contrib/gitian-descriptors/gitian-win.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../polis/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../gull/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../gull/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../gull/contrib/gitian-descriptors/gitian-osx.yml
 
 	popd
 
@@ -138,25 +138,25 @@ Commit your signature to gitian.sigs:
 
   Wait for Windows/OS X detached signatures:
 	Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-	Detached signatures will then be committed to the [polis-detached-sigs](https://github.com/polispay/polis-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+	Detached signatures will then be committed to the [gull-detached-sigs](https://github.com/gullpay/gull-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
   Create (and optionally verify) the signed OS X binary:
 
 	pushd ./gitian-builder
-	./bin/gbuild -i --commit signature=v${VERSION} ../polis/contrib/gitian-descriptors/gitian-osx-signer.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../polis/contrib/gitian-descriptors/gitian-osx-signer.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../polis/contrib/gitian-descriptors/gitian-osx-signer.yml
-	mv build/out/polis-osx-signed.dmg ../polis-${VERSION}-osx.dmg
+	./bin/gbuild -i --commit signature=v${VERSION} ../gull/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../gull/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gull/contrib/gitian-descriptors/gitian-osx-signer.yml
+	mv build/out/gull-osx-signed.dmg ../gull-${VERSION}-osx.dmg
 	popd
 
   Create (and optionally verify) the signed Windows binaries:
 
 	pushd ./gitian-builder
-	./bin/gbuild -i --commit signature=v${VERSION} ../polis/contrib/gitian-descriptors/gitian-win-signer.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../polis/contrib/gitian-descriptors/gitian-win-signer.yml
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../polis/contrib/gitian-descriptors/gitian-win-signer.yml
-	mv build/out/polis-*win64-setup.exe ../polis-${VERSION}-win64-setup.exe
-	mv build/out/polis-*win32-setup.exe ../polis-${VERSION}-win32-setup.exe
+	./bin/gbuild -i --commit signature=v${VERSION} ../gull/contrib/gitian-descriptors/gitian-win-signer.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../gull/contrib/gitian-descriptors/gitian-win-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../gull/contrib/gitian-descriptors/gitian-win-signer.yml
+	mv build/out/gull-*win64-setup.exe ../gull-${VERSION}-win64-setup.exe
+	mv build/out/gull-*win32-setup.exe ../gull-${VERSION}-win32-setup.exe
 	popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -181,21 +181,21 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the polis.org server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the gull.org server
 
-- Update polis.org
+- Update gull.org
 
 - Announce the release:
 
-  - Release on polis forum: https://www.polis.org/forum/topic/official-announcements.54/
+  - Release on gull forum: https://www.gull.org/forum/topic/official-announcements.54/
 
-  - polis-development mailing list
+  - gull-development mailing list
 
-  - Update title of #polispay on Freenode IRC
+  - Update title of #gullpay on Freenode IRC
 
-  - Optionally reddit /r/polispay, ... but this will usually sort out itself
+  - Optionally reddit /r/gullpay, ... but this will usually sort out itself
 
-- Notify flare so that he can start building [the PPAs](https://launchpad.net/~polis.org/+archive/ubuntu/polis)
+- Notify flare so that he can start building [the PPAs](https://launchpad.net/~gull.org/+archive/ubuntu/gull)
 
 - Add release notes for the new version to the directory `doc/release-notes` in git master
 

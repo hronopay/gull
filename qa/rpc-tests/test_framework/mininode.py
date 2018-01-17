@@ -1,4 +1,4 @@
-# mininode.py - polis P2P network half-a-node
+# mininode.py - gull P2P network half-a-node
 #
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -6,12 +6,12 @@
 # This python code was modified from ArtForz' public domain  half-a-node, as
 # found in the mini-node branch of http://github.com/jgarzik/pynode.
 #
-# NodeConn: an object which manages p2p connectivity to a polis node
+# NodeConn: an object which manages p2p connectivity to a gull node
 # NodeConnCB: a base class that describes the interface for receiving
 #             callbacks with network messages from a NodeConn
 # CBlock, CTransaction, CBlockHeader, CTxIn, CTxOut, etc....:
 #     data structures that should map to corresponding structures in
-#     polis/primitives
+#     gull/primitives
 # msg_block, msg_tx, msg_headers, etc.:
 #     data structures that represent network messages
 # ser_*, deser_*: functions that handle serialization/deserialization
@@ -64,7 +64,7 @@ def sha256(s):
 def hash256(s):
     return sha256(sha256(s))
 
-def polishash(s):
+def gullhash(s):
     return dash_hash.getPoWHash(s)
 
 def deser_string(f):
@@ -247,7 +247,7 @@ def FromHex(obj, hex_string):
 def ToHex(obj):
     return hexlify(obj.serialize()).decode('ascii')
 
-# Objects that map to polisd objects, which can be serialized/deserialized
+# Objects that map to gulld objects, which can be serialized/deserialized
 
 class CAddress(object):
     def __init__(self):
@@ -496,8 +496,8 @@ class CBlockHeader(object):
             r += struct.pack("<I", self.nTime)
             r += struct.pack("<I", self.nBits)
             r += struct.pack("<I", self.nNonce)
-            self.sha256 = uint256_from_str(polishash(r))
-            self.hash = encode(polishash(r)[::-1], 'hex_codec').decode('ascii')
+            self.sha256 = uint256_from_str(gullhash(r))
+            self.hash = encode(gullhash(r)[::-1], 'hex_codec').decode('ascii')
 
     def rehash(self):
         self.sha256 = None
@@ -972,7 +972,7 @@ class msg_headers(object):
         self.headers = []
 
     def deserialize(self, f):
-        # comment in polisd indicates these should be deserialized as blocks
+        # comment in gulld indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))
@@ -1185,7 +1185,7 @@ class NodeConn(asyncore.dispatcher):
         vt.addrFrom.ip = "0.0.0.0"
         vt.addrFrom.port = 0
         self.send_message(vt, True)
-        print 'MiniNode: Connecting to polis Node IP # ' + dstaddr + ':' \
+        print 'MiniNode: Connecting to gull Node IP # ' + dstaddr + ':' \
             + str(dstport)
 
         try:

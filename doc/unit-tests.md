@@ -6,13 +6,13 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the polisd tests manually, launch `src/test/test_polis`.
+To run the gulld tests manually, launch `src/test/test_gull`.
 
-To add more polisd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more gulld tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the polis-qt tests manually, launch `src/qt/test/test_polis-qt`
+To run the gull-qt tests manually, launch `src/qt/test/test_gull-qt`
 
-To add more polis-qt tests, add them to the `src/qt/test/` directory and
+To add more gull-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.

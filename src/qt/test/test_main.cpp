@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The polis Core developers
+// Copyright (c) 2014-2017 The gull Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/polis-config.h"
+#include "config/gull-config.h"
 #endif
 
 #include "util.h"
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     // Don't remove this, it's needed to access
     // QCoreApplication:: in the tests
     QCoreApplication app(argc, argv);
-    app.setApplicationName("polis-Qt-test");
+    app.setApplicationName("gull-Qt-test");
 
     SSL_library_init();
 

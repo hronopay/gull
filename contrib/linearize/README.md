@@ -1,9 +1,9 @@
 # Linearize
 Construct a linear, no-fork, best version of the blockchain.
 
-## Step 0: Install polis_hash
+## Step 0: Install gull_hash
 
-https://github.com/polispay/polis_hash
+https://github.com/gullpay/gull_hash
 
 ## Step 1: Download hash list
 

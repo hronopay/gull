@@ -134,7 +134,7 @@ And all those who contributed additional code review and/or security research:
 - fanquake
 - Jeff Garzik
 - Jonas Nick
-- Luke polisjr
+- Luke gulljr
 - Patrick Strateman
 - Philip Kaufmann
 - Sergio Demian Lerner

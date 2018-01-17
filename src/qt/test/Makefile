@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C ../../ test_polis_qt
+	$(MAKE) -C ../../ test_gull_qt
 clean:
-	$(MAKE) -C ../../ test_polis_qt_clean
+	$(MAKE) -C ../../ test_gull_qt_clean
 check:
-	$(MAKE) -C ../../ test_polis_qt_check
+	$(MAKE) -C ../../ test_gull_qt_check
